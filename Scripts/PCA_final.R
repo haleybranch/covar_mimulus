@@ -8,6 +8,7 @@ library(devtools)
 library("factoextra")
 library(ggfortify)
 library(ellipse)
+library(ggplot2)
 
 ####################################################################################################
 #Read in data
@@ -93,20 +94,20 @@ north_pre_w <- cov(cormat_north_pre_w[,1:2])
 
 # save all as dataframes 
 
-write.csv(south_peak_d, "Data/south_peak_d_cov.csv")
-write.csv(south_pre_d, "Data/south_pre_d_cov.csv")
-write.csv(south_peak_w, "Data/south_peak_w_cov.csv")
-write.csv(south_pre_w, "Data/south_pre_w_cov.csv")
+#write.csv(south_peak_d, "Data/south_peak_d_cov.csv")
+#write.csv(south_pre_d, "Data/south_pre_d_cov.csv")
+#write.csv(south_peak_w, "Data/south_peak_w_cov.csv")
+#write.csv(south_pre_w, "Data/south_pre_w_cov.csv")
 
-write.csv(center_peak_d, "Data/centre_peak_d_cov.csv")
-write.csv(center_pre_d, "Data/centre_pre_d_cov.csv")
-write.csv(center_peak_w, "Data/centre_peak_w_cov.csv")
-write.csv(center_pre_w, "Data/centre_pre_w_cov.csv")
+#write.csv(center_peak_d, "Data/centre_peak_d_cov.csv")
+#write.csv(center_pre_d, "Data/centre_pre_d_cov.csv")
+#write.csv(center_peak_w, "Data/centre_peak_w_cov.csv")
+#write.csv(center_pre_w, "Data/centre_pre_w_cov.csv")
 
-write.csv(north_peak_d, "Data/north_peak_d_cov.csv")
-write.csv(north_pre_d, "Data/north_pre_d_cov.csv")
-write.csv(north_peak_w, "Data/north_peak_w_cov.csv")
-write.csv(north_pre_w, "Data/north_pre_w_cov.csv")
+#write.csv(north_peak_d, "Data/north_peak_d_cov.csv")
+#write.csv(north_pre_d, "Data/north_pre_d_cov.csv")
+#write.csv(north_peak_w, "Data/north_peak_w_cov.csv")
+#write.csv(north_pre_w, "Data/north_pre_w_cov.csv")
 
 # Plot all loadings
 biplot(pc1_all, scale=0, col=c("black", "red"), xlab = "PC1 (55%)", ylab="PC2 (21%)")
@@ -146,3 +147,11 @@ polygon(ellipse(north_peak_d/(max(abs(pc1_all$rotation))*100), centre=colMeans(c
 polygon(ellipse(north_pre_w/(max(abs(pc1_all$rotation))*100), centre=colMeans(cormat_north_pre_w[,1:2]), level=0.95), col=adjustcolor("lightblue", alpha.f=0.25), border="lightblue")
 polygon(ellipse(north_peak_w/(max(abs(pc1_all$rotation))*100), centre=colMeans(cormat_north_peak_w[,1:2]), level=0.95), col=adjustcolor("blue", alpha.f=0.25), border="blue")
 
+
+
+
+################## ggplots 
+
+ggplot(cormat_center_peak_d, aes(V1, V2)) +
+  geom_point() +
+  stat_ellipse(level=0.95)

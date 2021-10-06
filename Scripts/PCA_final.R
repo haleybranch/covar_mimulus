@@ -154,4 +154,5 @@ polygon(ellipse(north_peak_w/(max(abs(pc1_all$rotation))*100), centre=colMeans(c
 
 ggplot(cormat_center_peak_d, aes(V1, V2)) +
   geom_point() +
-  stat_ellipse(level=0.95)
+  stat_ellipse(level=0.95) #this isn't right
+

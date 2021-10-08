@@ -29,6 +29,7 @@ covmat$X <- NULL
 
 # grab identifier columns and merge to covmat
 covmat_all <- cbind(covmat, all)
+write.csv(covmat_all, "Data/covmat_all.csv")
 
 #organize the sections based on region, time, and treatment
 covmat_south_peak_d <- filter(covmat_all, Region.period == "3.South_Peak" & Treatment == "D")

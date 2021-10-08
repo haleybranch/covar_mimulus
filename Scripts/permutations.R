@@ -3,5 +3,5 @@
 ####################################################################################################
 #Import libraries
 library(tidyverse)
-angle <- read.csv("Data/angle.csv")
+slope <- read.csv("Data/slope.csv")
 area <- read.csv("Data/area.csv")

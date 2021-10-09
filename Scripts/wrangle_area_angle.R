@@ -37,14 +37,20 @@ n_pre_d_area <- sum(n_pre_d$V1[1],n_pre_d$V2[2])
 n_peak_w_area <- sum(n_peak_w$V1[1],n_peak_w$V2[2])
 n_pre_w_area <- sum(n_pre_w$V1[1],n_pre_w$V2[2])
 
-data <- data.frame(rbind(s_pre_w_area, s_peak_w_area, s_pre_d_area, s_peak_d_area,
-                         c_pre_w_area, c_peak_w_area, c_pre_d_area, c_peak_d_area,
-                         n_pre_w_area, n_peak_w_area, n_pre_d_area, n_peak_d_area))
+## calculate difference 
+area_south_d <- (s_peak_d_area - s_pre_d_area)
+area_south_w <- (s_peak_w_area - s_pre_w_area)
+area_center_d <- (c_peak_d_area - c_pre_d_area)
+area_center_w <- (c_peak_w_area - c_pre_w_area)
+area_north_d <- (n_peak_d_area - n_pre_d_area)
+area_north_w <- (n_peak_w_area - n_pre_w_area)
 
-data$area <- data$rbind.s_pre_w_area..s_peak_w_area..s_pre_d_area..s_peak_d_area..
-data$rbind.s_pre_w_area..s_peak_w_area..s_pre_d_area..s_peak_d_area.. <- NULL
+data <- data.frame(rbind(area_south_d, area_south_w, area_center_d,area_center_w,
+                         area_north_d, area_north_w))
+  
 
 #write.csv(data, "Data/area.csv")
+data <- read.csv("Data/area.csv", header=T)
 
 #######grab the orientation change
 s_d_slope <- (s_peak_d$V2[1]) - (s_pre_d$V2[1])

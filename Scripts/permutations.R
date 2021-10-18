@@ -140,11 +140,110 @@ per_c.d.a.pval # p=0.5
 
 # Permuated P-value for Slope
 ex_6 <- length(slope_center_d[slope_center_d >= slope_data[4,2]])
-per_s.d.s_pval <- ex_6/dim(slope_center_d)[1] 
-per_s.d.s_pval # p=0.79
+per_c.d.s_pval <- ex_6/dim(slope_center_d)[1] 
+per_c.d.s_pval # p=0.79
 
 
+#Center Wet Permutation 
 
+# row shuffling
+for(i in 1:10000) {
+  set.seed(i)
+  rows <- sample(nrow(covmat_center_w),replace = FALSE,) # randomize row indices
+  all.c.w.shuf <- covmat_center_w[rows, ] # shuffle rows
+  peak.c.w.shuf <- all.c.w.shuf [1:49,] # make random pre dataset
+  pre.c.w.shuf <- all.c.w.shuf [50:87,] # make random post dataset
+  
+  c_pre_w <- cov(pre.c.w.shuf[,1:2]) # get covariance from permuated loadings
+  c_peak_w <- cov(peak.c.w.shuf[,1:2]) 
+  #Area
+  c_pre_w_area <- sum(c_pre_w[1,1],c_pre_w[2,2]) #sum permutated variance to get area
+  c_peak_w_area <- sum(c_peak_w[1,1],c_peak_w[2,2])
+  area_center_w[i,1] <- (c_peak_w_area - c_pre_w_area)
+  #Slope
+  c_w_slope <- (c_peak_w[1,2]) - (c_pre_w[1,2]) #calc permuted slope difference
+  slope_center_w[i,1] <- c_w_slope
+}
+
+
+# Permuated P-value for Area
+ex_7 <- length(area_center_w[area_center_w >= area_data[4,2]])
+per_c.w.a.pval <- ex_7/dim(area_center_w)[1] 
+per_c.w.a.pval # p=0.83
+
+
+# Permuated P-value for Slope
+ex_8 <- length(slope_center_w[slope_center_w >= slope_data[3,2]])
+per_c.w.s_pval <- ex_8/dim(slope_center_w)[1] 
+per_c.w.s_pval # p=0.47
+
+
+#North Dry Permutation 
+
+# row shuffling
+for(i in 1:10000) {
+  set.seed(i)
+  rows <- sample(nrow(covmat_north_d),replace = FALSE,) # randomize row indices
+  all.n.d.shuf <- covmat_north_d[rows, ] # shuffle rows
+  peak.n.d.shuf <- all.n.d.shuf [1:55,] # make random pre dataset
+  pre.n.d.shuf <- all.n.d.shuf [56:108,] # make random post dataset
+  
+  n_pre_d <- cov(pre.n.d.shuf[,1:2]) # get covariance from permuated loadings
+  n_peak_d <- cov(peak.n.d.shuf[,1:2]) 
+  #Area
+  n_pre_d_area <- sum(n_pre_d[1,1],n_pre_d[2,2]) #sum permutated variance to get area
+  n_peak_d_area <- sum(n_peak_d[1,1],n_peak_d[2,2])
+  area_north_d[i,1] <- (n_peak_d_area - n_pre_d_area)
+  #Slope
+  n_d_slope <- (n_peak_d[1,2]) - (n_pre_d[1,2]) #calc permuted slope difference
+  slope_north_d[i,1] <- n_d_slope
+}
+
+
+# Permuated P-value for Area
+ex_9 <- length(area_north_d[area_north_d >= area_data[5,2]])
+per_n.d.a.pval <- ex_9/dim(area_north_d)[1] 
+per_n.d.a.pval # p=0.73
+
+
+# Permuated P-value for Slope
+ex_10 <- length(slope_north_d[slope_north_d >= slope_data[6,2]])
+per_n.d.s_pval <- ex_10/dim(slope_north_d)[1] 
+per_n.d.s_pval # p=0.068
+
+
+#South Wet Permutation 
+
+# row shuffling
+for(i in 1:10000) {
+  set.seed(i)
+  rows <- sample(nrow(covmat_north_w),replace = FALSE,) # randomize row indices
+  all.n.w.shuf <- covmat_north_w[rows, ] # shuffle rows
+  peak.n.w.shuf <- all.n.w.shuf [1:51,] # make random pre dataset
+  pre.n.w.shuf <- all.n.w.shuf [52:100,] # make random post dataset
+  
+  n_pre_w <- cov(pre.n.w.shuf[,1:2]) # get covariance from permuated loadings
+  n_peak_w <- cov(peak.n.w.shuf[,1:2]) 
+  #Area
+  n_pre_w_area <- sum(n_pre_w[1,1],n_pre_w[2,2]) #sum permutated variance to get area
+  n_peak_w_area <- sum(n_peak_w[1,1],n_peak_w[2,2])
+  area_north_w[i,1] <- (n_peak_w_area - n_pre_w_area)
+  #Slope
+  n_w_slope <- (n_peak_w[1,2]) - (n_pre_w[1,2]) #calc permuted slope difference
+  slope_north_w[i,1] <- n_w_slope
+}
+
+
+# Permuated P-value for Area
+ex_11 <- length(area_north_w[area_north_w >= area_data[6,2]])
+per_n.d.a.pval <- ex_11/dim(area_north_d)[1] 
+per_n.d.a.pval # p=0.38
+
+
+# Permuated P-value for Slope
+ex_12 <- length(slope_north_w[slope_north_w >= slope_data[5,2]])
+per_n.d.s_pval <- ex_12/dim(slope_north_w)[1] 
+per_n.d.s_pval # p=0.53
 
 
 

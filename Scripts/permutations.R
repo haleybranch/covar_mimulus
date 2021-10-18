@@ -212,7 +212,7 @@ per_n.d.s_pval <- ex_10/dim(slope_north_d)[1]
 per_n.d.s_pval # p=0.068
 
 
-#South Wet Permutation 
+#North Wet Permutation 
 
 # row shuffling
 for(i in 1:10000) {
